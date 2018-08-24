@@ -1,5 +1,6 @@
 <template>
-<v-flex xs12>
+  <v-container fluid>
+      <v-flex xs12>
 
         <v-btn to="/profile" block color="primary" dark>My Profile</v-btn>
         <v-btn block color="primary" dark>The Farm</v-btn>
@@ -7,7 +8,9 @@
         <v-btn block color="primary" dark>Our Products</v-btn>
         <v-btn block color="primary" dark>Our Livestock</v-btn>
   
-</v-flex>
+      </v-flex>
+    
+  </v-container>
 
 </template>
 

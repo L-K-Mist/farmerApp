@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import UserProfile from './views/Profile.vue';
 import LogIn from './views/Login.vue';
+import SignUp from './views/SignUp.vue';
 
 Vue.use(Router)
 
@@ -20,10 +21,14 @@ export default new Router({
       component: LogIn
     },
     {
+      path: '/signup',
+      name: 'SignUp',
+      component: SignUp
+    },
+    {
       path: '/profile',
       name: 'profile',
       component: UserProfile,
-
       meta: {
         requiresAuth: true
       }
