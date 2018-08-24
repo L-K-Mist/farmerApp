@@ -1,24 +1,20 @@
 <template>
-  <v-container fluid>
-    <v-slide-y-transition mode="out-in">
-      <v-layout column align-center>
-        <img src="@/assets/logo.png" alt="Vuetify.js" class="mb-5">
-        <blockquote>
-          &#8220;First, solve the problem. Then, write the code.&#8221;
-          <footer>
-            <small>
-              <em>&mdash;John Johnson</em>
-            </small>
-          </footer>
-        </blockquote>
-      </v-layout>
-    </v-slide-y-transition>
-  </v-container>
+<v-flex xs12>
+
+        <v-btn to="/profile" block color="primary" dark>My Profile</v-btn>
+        <v-btn block color="primary" dark>The Farm</v-btn>
+        <v-btn block color="primary" dark>Our Crops</v-btn>
+        <v-btn block color="primary" dark>Our Products</v-btn>
+        <v-btn block color="primary" dark>Our Livestock</v-btn>
+  
+</v-flex>
+
 </template>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 ul {

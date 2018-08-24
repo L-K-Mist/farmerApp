@@ -1,76 +1,41 @@
 <template>
   <v-app>
-    <v-navigation-drawer
-      persistent
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      v-model="drawer"
-      enable-resize-watcher
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-tile
-          value="true"
-          v-for="(item, i) in items"
-          :key="i"
-        >
-          <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
     <v-toolbar
       app
       :clipped-left="clipped"
+      color="secondary"
     >
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-        <v-icon>fa-address-card</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="fixed = !fixed">
-        <v-icon>remove</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
+      <v-btn icon>
         <v-icon>menu</v-icon>
       </v-btn>
+      <v-toolbar-title v-text="title">
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+        
+       <v-toolbar-items>
+         <v-flex color="white" ma-2>
+            <img :src="logo" alt="Kandu">         
+         </v-flex>
+       </v-toolbar-items>
     </v-toolbar>
     <v-content>
-      <router-view/>
+        <v-container fluid>
+    
+          <v-layout column align-center>
+            <v-slide-y-transition mode="out-in">
+              <router-view/>
+            </v-slide-y-transition>
+          </v-layout>
+        </v-container>
     </v-content>
-    <v-navigation-drawer
-      temporary
-      :right="right"
-      v-model="rightDrawer"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-tile @click="right = !right">
-          <v-list-tile-action>
-            <v-icon>compare_arrows</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
     <v-footer :fixed="fixed" app>
-      <span>&copy; 2017</span>
+      <span>&copy; 2018</span>
     </v-footer>
   </v-app>
 </template>
 
 <script>
+import logo from "@/assets/kandu.png";
 export default {
   name: "App",
   data() {
@@ -78,17 +43,23 @@ export default {
       clipped: false,
       drawer: true,
       fixed: false,
-      items: [
-        {
-          icon: "bubble_chart",
-          title: "Inspire"
-        }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: "Vuetify.js"
+      title: "Kandu Farms",
+      logo
     };
   }
 };
 </script>
+
+<style scoped>
+img {
+  height: auto;
+  object-fit: contain;
+  /* max-width: 100%; */
+  max-height: 100%;
+  display: block;
+  border-radius: 2px;
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.5);
+  transition: width 1s;
+}
+</style>
+

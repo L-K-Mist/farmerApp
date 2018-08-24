@@ -1,15 +1,32 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import UserProfile from './views/Profile.vue';
+import LogIn from './views/Login.vue';
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
+  mode: 'history',
+  linkActiveClass: 'active', // TODO Dee: Research this.
+  routes: [{
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/login',
+      name: 'LogIn',
+      component: LogIn
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: UserProfile,
+
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/about',
@@ -17,7 +34,8 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      component: () =>
+        import ( /* webpackChunkName: "about" */ './views/About.vue')
     }
   ]
 })
