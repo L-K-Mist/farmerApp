@@ -31,6 +31,7 @@
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-btn icon @click.stop="miniVariant = !miniVariant">
         <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
+        <v-icon>fa-address-card</v-icon>
       </v-btn>
       <v-btn icon @click.stop="clipped = !clipped">
         <v-icon>web</v-icon>
@@ -70,23 +71,24 @@
 </template>
 
 <script>
-
 export default {
-  name: 'App',
-  data () {
+  name: "App",
+  data() {
     return {
       clipped: false,
       drawer: true,
       fixed: false,
-      items: [{
-        icon: 'bubble_chart',
-        title: 'Inspire'
-      }],
+      items: [
+        {
+          icon: "bubble_chart",
+          title: "Inspire"
+        }
+      ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
-    }
+      title: "Vuetify.js"
+    };
   }
-}
+};
 </script>
