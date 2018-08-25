@@ -5,7 +5,7 @@
       :clipped-left="clipped"
       color="secondary"
     >
-       <v-icon>fa-github</v-icon>
+       <!-- <v-icon>fa-github</v-icon> -->
       <v-btn icon>
         <v-icon>menu</v-icon>
       </v-btn>

@@ -9,7 +9,7 @@ Vue.use(Router)
 
 export default new Router({
   mode: 'history',
-  // linkActiveClass: 'active', // TODO Dee: Research this.
+  // linkActiveClass: 'active', // something to do with css not much for vuetify
   routes: [{
       path: '/',
       name: 'home',

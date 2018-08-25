@@ -7,6 +7,8 @@
         <v-btn block color="primary" dark>Our Crops</v-btn>
         <v-btn block color="primary" dark>Our Products</v-btn>
         <v-btn block color="primary" dark>Our Livestock</v-btn>
+        <br>
+        <v-btn @click="logout" block color="secondary" dark>Log Out</v-btn>
   
       </v-flex>
     
