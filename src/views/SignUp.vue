@@ -3,7 +3,7 @@
 fluid
 >
   <v-layout column align-center>
-    <v-form ref="form" v-model="valid" lazy-validation>
+    <v-form ref="form" v-model="valid" lazy-validation @submit.prevent="signup">
         <v-text-field 
             v-model="name"
             label="Name you're known by"
@@ -23,12 +23,15 @@ fluid
         ></v-text-field>
         <v-text-field :type="'password'"
             v-model="confirmPassword"
-            :rules="[comparePasswords]"
+            :rules="[comparePasswords == '']"
             label="Password Confirmation"
             
         ></v-text-field>
         <v-btn type="submit" :class="{ red: !valid, green: valid }">Sign Up</v-btn>
         <v-btn @click="clear">clear</v-btn>
+                        <v-flex>
+                <p> Already have an account? <router-link to="/login">Log In</router-link></p>
+                </v-flex>
     </v-form>
 
   </v-layout>  
@@ -38,6 +41,7 @@ fluid
 
 <script>
 import { SIGNUP_MUTATION } from "@/graphql/mutations";
+
 export default {
   name: "SignUp",
   data: () => ({
@@ -63,8 +67,13 @@ export default {
   },
 
   methods: {
-    login() {
+    signup() {
       if (this.$refs.form.validate()) {
+        console.log(
+          "​login -> this.$refs.form.validate()",
+          this.$refs.form.validate()
+        );
+
         this.$apollo
           .mutate({
             // we make use of a mutate method available on this.$apollo (from the Vue Apollo plugin).
@@ -78,6 +87,7 @@ export default {
           // Once the signup process is successful, which means a user has been created, we save the user token to localstorage and redirect the user to the homepage. If there was an error, we catch and log the error to the console.
           .then(response => {
             localStorage.setItem("USER_TOKEN", response.data.signup.token);
+            console.log("​login -> response.data", response.data);
             // redirect to login page
             this.$router.replace("/");
           })

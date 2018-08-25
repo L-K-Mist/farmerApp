@@ -4,7 +4,7 @@
     >
         <v-layout column align-center>
             <v-flex xs12 ma-0>
-                <v-form @submit.stop="login" ref="form" v-model="valid" lazy-validation>
+                <v-form @submit.prevent="login" ref="form" v-model="valid" lazy-validation>
 
                     <v-text-field 
                         v-model="email"
@@ -39,21 +39,26 @@ export default {
   }),
   methods: {
     login() {
-      //   if (this.$refs.form.validate()) {
-      this.$apollo
-        .mutate({
-          mutation: LOGIN_MUTATION,
-          variables: {
-            email: this.email,
-            password: this.password
-          }
-        })
-        .then(response => {
-          localStorage.setItem("USER_TOKEN", response.data.login.token);
-          this.$router.replace("/");
-        })
-        .catch(error => console.error(error));
-      //   }
+      if (this.$refs.form.validate()) {
+        this.$apollo
+          .mutate({
+            mutation: LOGIN_MUTATION,
+            variables: {
+              email: this.email,
+              password: this.password
+            }
+          })
+          .then(response => {
+            localStorage.setItem("USER_TOKEN", response.data.login.token);
+            console.log(
+              "​login -> response.data.login.token",
+              response.data.login.token
+            );
+
+            this.$router.replace("/");
+          })
+          .catch(error => console.error(error));
+      }
     },
     clear() {
       this.$refs.form.reset();
