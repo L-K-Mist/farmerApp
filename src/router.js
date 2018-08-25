@@ -9,7 +9,7 @@ Vue.use(Router)
 
 export default new Router({
   mode: 'history',
-  linkActiveClass: 'active', // TODO Dee: Research this.
+  // linkActiveClass: 'active', // TODO Dee: Research this.
   routes: [{
       path: '/',
       name: 'home',

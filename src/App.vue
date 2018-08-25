@@ -5,10 +5,12 @@
       :clipped-left="clipped"
       color="secondary"
     >
+       <v-icon>fa-github</v-icon>
       <v-btn icon>
         <v-icon>menu</v-icon>
       </v-btn>
-      <v-toolbar-title v-text="title">
+      <v-toolbar-title>
+        Kandu Farms
       </v-toolbar-title>
       <v-spacer></v-spacer>
         

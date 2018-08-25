@@ -42,6 +42,7 @@ export default {
   name: "SignUp",
   data: () => ({
     valid: true,
+    name: "",
     email: "",
     emailRules: [
       v => !!v || "E-mail is required",
