@@ -15,6 +15,17 @@
   </v-container>
 
 </template>
+<script>
+export default {
+  methods: {
+    logout() {
+      localStorage.removeItem("USER_TOKEN");
+      this.$router.replace("/login");
+    }
+  }
+};
+</script>
+
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>

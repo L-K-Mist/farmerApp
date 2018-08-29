@@ -30,7 +30,7 @@ Vue.use(require('vue-moment')) // I've always done this wrong: importing into ea
 
 
 const httpLink = new HttpLink({ // Here, we create a new instance of httpLink with the URL ( http://localhost:4000/) of our GraphQL server.
-  uri: 'http://localhost:4000/'
+  uri: 'https://mirage-advanced-frdudlwdkj.now.sh/'
 })
 
 const httpLinkAuth = setContext((_, { // Then we make use of the setContext object to create an httpLinkAuth that gets the user token from local storage and return the headers, which contain the Authorization header.

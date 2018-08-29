@@ -4,17 +4,24 @@ fluid
 >
   <v-layout column align-center>
     <v-form ref="form" v-model="valid" lazy-validation>
-        <v-text-field
-            v-model="name"
+      <template v-if="me.name !== null">
+        <div v-if="$apollo.loading">Loading...</div>
+        <div v-else>Hi {{ me.name }}, please share a bit more about yourself for us...</div>
+
+      </template>
+        <v-text-field v-if="!$apollo.loading"
+            
             :rules="nameRules"
             :counter="10"
-            label="Name"
+            :label="me.name"
+            :value="me.name"
             required
         ></v-text-field>
-        <v-text-field
-            v-model="email"
+        <v-text-field v-if="!$apollo.loading"
+
             :rules="emailRules"
-            label="E-mail"
+            :label="me.email"
+            :value="me.email"
             required
         ></v-text-field>
         <v-select
@@ -39,9 +46,11 @@ fluid
 </template>
 
 <script>
+import gql from "graphql-tag";
 export default {
   data: () => ({
     valid: true,
+    me: "",
     name: "",
     nameRules: [
       v => !!v || "Name is required",
@@ -56,7 +65,16 @@ export default {
     items: ["Item 1", "Item 2", "Item 3", "Item 4"],
     checkbox: false
   }),
-
+  apollo: {
+    me: gql`
+      query me {
+        me {
+          name
+          email
+        }
+      }
+    `
+  },
   methods: {
     submit() {
       if (this.$refs.form.validate()) {
