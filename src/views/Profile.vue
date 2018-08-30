@@ -9,40 +9,108 @@ fluid
         <div v-else>Hi {{ me.name }}, please share a bit more about yourself for us...</div>
 
       </template>
+      <br>
         <v-text-field v-if="!$apollo.loading"
-            
             :rules="nameRules"
             :counter="10"
-            :label="me.name"
+            label="First Name"
             :value="me.name"
             required
         ></v-text-field>
         <v-text-field v-if="!$apollo.loading"
-
             :rules="emailRules"
             :label="me.email"
             :value="me.email"
             required
         ></v-text-field>
-        <v-select
-            v-model="select"
-            :items="items"
-            :rules="[v => !!v || 'Item is required']"
-            label="Item"
+        <v-text-field
+            label="Last Name"
+            v-model="person.lastName"
             required
+        ></v-text-field>
+        <v-text-field
+            label="Cell Number"
+            v-model="person.cellNo"
+        ></v-text-field>
+        <v-text-field
+            label="Land Line"
+            v-model="person.landLine"
+        ></v-text-field>
+        <v-text-field
+            label="ID Number"
+            hint="Required of you want to sell through us"
+            v-model="person.idSA"
+        ></v-text-field>
+        <v-flex xs12>
+          <h3>Address</h3>
+        <v-text-field
+            label="Address Line 1"
+            hint="Required of you want to sell through us"
+            v-model="person.address.line1"
+        ></v-text-field>   
+        <v-text-field
+            label="Address Line 2"
+            hint="Required of you want to sell through us"
+            v-model="person.address.line2"
+        ></v-text-field>     
+        <v-text-field
+            label="Address Line 3"
+            v-model="person.address.line3"
+        ></v-text-field>
+        <v-text-field
+            label="Area"
+            v-model="person.address.area"
+        ></v-text-field>   
+        <v-text-field
+            label="Postal Code"
+            v-model="person.address.postalCode"
+        ></v-text-field>
+        <v-select
+          :items="items.provinces"
+          v-model="person.address.province"
+          label="Select your province"
+          single-line
+        ></v-select>                
+        </v-flex>        
+        <v-select
+            label="Farming Activities"
+            :items="items.activities"
+            v-model="activities"
+            multiple
+            chips
+            hint="You can pick more than one"
+            persistent-hint
         ></v-select>
+        <v-text-field
+            v-model="shortDescription"
+            label="Short Description - What is your PASSION?"
+            required
+        ></v-text-field>
+        <v-textarea
+            v-model="longDescription"
+            label="Care to go into more detail?"
+        ></v-textarea>        
+        <v-text-field v-if="!$apollo.loading"
+            v-model="shortDescription"
+            label="Short Description - What is your PASSION?"
+            required
+        ></v-text-field>
+                <v-textarea v-if="!$apollo.loading"
+            v-model="longDescription"
+            label="Care to go into more detail?"
+        ></v-textarea>
 
         <v-btn
             :disabled="!valid"
-            @click="submit"
+            href="https://welink.netlify.com/"
+            target="blank"
         >
             submit
         </v-btn>
-        <v-btn @click="clear">clear</v-btn>
+        <v-btn @click="clear"><a  ></a>clear</v-btn>
     </v-form>
   </v-layout>  
-</v-container>
-    
+</v-container> 
 </template>
 
 <script>
@@ -61,9 +129,34 @@ export default {
       v => !!v || "E-mail is required",
       v => /.+@.+/.test(v) || "E-mail must be valid"
     ],
-    select: null,
-    items: ["Item 1", "Item 2", "Item 3", "Item 4"],
-    checkbox: false
+    shortDescription: "",
+    longDescription: "",
+    person: {
+      lastName: "",
+      cellNo: null,
+      landLine: null,
+      idSA: null,
+      address: {
+        line1: "",
+        line2: "",
+        line3: "",
+        area: "",
+        postalCode: "",
+        province: ""
+      },
+      enterprise: "",
+      activity: "",
+      practice: "",
+      association: "",
+      profilePic: null
+    },
+    items: {
+      activities: ["Commercial", "Semi-Commercial", "Market-Grower"],
+      provinces: ["Kwazulu-Natal", "Cape Province", "..or BUST", "Elsewhere"]
+    },
+    activities: [],
+    shortDescription: "",
+    longDescription: ""
   }),
   apollo: {
     me: gql`
@@ -76,17 +169,7 @@ export default {
     `
   },
   methods: {
-    submit() {
-      if (this.$refs.form.validate()) {
-        // Native form submission is not yet supported
-        axios.post("/api/submit", {
-          name: this.name,
-          email: this.email,
-          select: this.select,
-          checkbox: this.checkbox
-        });
-      }
-    },
+    submit() {},
     clear() {
       this.$refs.form.reset();
     }
