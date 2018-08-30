@@ -1,15 +1,16 @@
 <template>
-<div>
+<v-flex xs12 sm10 offset-sm1 md8 offset-md2 lg6 offset-lg3 xl4  offset-xl2>
   <v-container>
-    <v-flex xs12>
-      <template v-if="me.name !== null">
-        <div v-if="$apollo.loading">Loading...</div>
-        <div v-else>Hi {{ me.name }}, please share a bit more about yourself for us...</div>
+    <v-flex xs12 sm10 offset-sm1 md8 offset-md2 lg6 offset-lg3 xl4  offset-xl2>
+      <v-flex xs12>
+        <template v-if="me.name !== null">
+          <div v-if="$apollo.loading">Loading...</div>
+          <div v-else>Hi {{ me.name }}, please share a bit more about yourself for us...</div>
 
-      </template>
-      
+        </template>
+        
+      </v-flex>
     </v-flex>
-    
   </v-container>
   <br>
   <v-form ref="form" v-model="valid" lazy-validation>
@@ -102,39 +103,38 @@
           
         </v-card-text>
       </v-card>
-    </v-flex>
-    <v-flex xs12>
-      <v-card>
-        <v-card-title primary-title>
-          <div class="headline">What You Do</div>
-        </v-card-title>
-        <v-card-text>
-          <v-select
-              label="Farming Activities"
-              :items="items.activities"
-              v-model="activities"
+        </v-flex>
+        <v-flex xs12>
+          <v-card>
+            <v-card-title primary-title>
+              <div class="headline">What You Do</div>
+            </v-card-title>
+            <v-card-text>
+              <v-select
+                  label="Farming Activities"
+                  :items="items.activities"
+                  v-model="activities"
 
-              hint="Whichever best describes your operation"
-              persistent-hint
-          ></v-select>
-          <v-textarea
-              v-model="longDescription"
-              label="Care to go into more detail?"
-          ></v-textarea>        
-          
-        </v-card-text>
+                  hint="Whichever best describes your operation"
+                  persistent-hint
+              ></v-select>
+              <v-textarea
+                  v-model="longDescription"
+                  label="Care to go into more detail?"
+              ></v-textarea>        
+              
+            </v-card-text>
      
-      </v-card>
-      
-    </v-flex>
-      <br>
-<v-flex xs12>
-  
-<v-flex xs8>
-  For now, click "SUBMIT" to see something completely different.
-</v-flex>
-<br>
-</v-flex>
+          </v-card>     
+        </v-flex>
+        <br>
+        <v-flex xs12>
+          
+        <v-flex xs8>
+          For now, click "SUBMIT" to see something completely different.
+        </v-flex>
+        <br>
+        </v-flex>
   
 
 
@@ -146,11 +146,11 @@
             submit
         </v-btn>
         <v-btn @click="clear"><a  ></a>clear</v-btn>
-  </v-layout>  
-</v-container> 
-    </v-form>
+      </v-layout>  
+    </v-container> 
+  </v-form>
 
-</div>
+</v-flex>
 </template>
 
 <script>

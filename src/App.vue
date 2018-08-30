@@ -6,7 +6,7 @@
       color="secondary"
     >
        <!-- <v-icon>fa-github</v-icon> -->
-      <v-btn icon>
+      <v-btn icon to="/">
         <v-icon>menu</v-icon>
       </v-btn>
       <v-toolbar-title>
