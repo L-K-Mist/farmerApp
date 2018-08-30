@@ -8,7 +8,7 @@ import SignUp from './views/SignUp.vue';
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   // linkActiveClass: 'active', // something to do with css not much for vuetify
   routes: [{
       path: '/',
