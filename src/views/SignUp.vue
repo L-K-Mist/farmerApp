@@ -42,6 +42,8 @@ fluid
 <script>
 import { SIGNUP_MUTATION } from "@/graphql/mutations";
 
+import db from "@/api/pouchDB";
+
 export default {
   name: "SignUp",
   data: () => ({
@@ -73,6 +75,17 @@ export default {
           "​login -> this.$refs.form.validate()",
           this.$refs.form.validate()
         );
+        var doc = {
+          _id: "user1",
+          nm: this.name,
+          pw: this.password,
+          em: this.email
+        };
+        db.put(doc);
+        this.$router.replace("/");
+        db.get("user1").then(function(doc) {
+          console.log(doc);
+        });
 
         this.$apollo
           .mutate({

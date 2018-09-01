@@ -155,6 +155,8 @@
 
 <script>
 import gql from "graphql-tag";
+import db from "@/api/pouchDB";
+
 export default {
   data: () => ({
     valid: true,

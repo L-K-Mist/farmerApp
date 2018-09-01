@@ -28,7 +28,22 @@
     </v-container>
 </template>
 
+
 <script>
+/**POUCH DB CREATE DOC EXAMPLE
+ * var doc = {
+  "_id": "mittens",
+  "name": "Mittens",
+  "occupation": "kitten",
+  "age": 3,
+  "hobbies": [
+    "playing with balls of yarn",
+    "chasing laser pointers",
+    "lookin' hella cute"
+  ]
+};
+db.put(doc);
+ */
 import { LOGIN_MUTATION } from "@/graphql/mutations";
 export default {
   name: "LogIn",
@@ -54,8 +69,6 @@ export default {
               "​login -> response.data.login.token",
               response.data.login.token
             );
-
-            this.$router.replace("/");
           })
           .catch(error => console.error(error));
       }
